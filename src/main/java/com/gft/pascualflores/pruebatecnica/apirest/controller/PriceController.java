@@ -25,7 +25,7 @@ public class PriceController implements ApiApi {
       Long brandId)
       throws PriceNotFoundException {
     PriceDto priceDto =
-        getPriceUseCase.getPriceByDateAndProductIdAndBrandId(date, productId, brandId);
-    return ResponseEntity.ok(this.mapper.productDtoToResponsePriceDto(priceDto));
+        getPriceUseCase.getPriceByDateAndPriceIdAndBrandId(date, productId, brandId);
+    return ResponseEntity.ok(this.mapper.priceDtoToResponsePriceDto(priceDto));
   }
 }

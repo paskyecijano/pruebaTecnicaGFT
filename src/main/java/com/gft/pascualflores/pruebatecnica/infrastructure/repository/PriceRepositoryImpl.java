@@ -20,7 +20,7 @@ public class PriceRepositoryImpl implements PriceRepository {
   private final PriceMapper priceMapper;
 
   @Override
-  public Optional<PriceDto> getPriceByDateAndProductIdAndBrandId(
+  public Optional<PriceDto> getPriceByDateAndPriceIdAndBrandId(
       OffsetDateTime date, Long productId, Long brandId) {
     List<Price> prices = priceRepository.getPrice(date, productId, brandId);
 

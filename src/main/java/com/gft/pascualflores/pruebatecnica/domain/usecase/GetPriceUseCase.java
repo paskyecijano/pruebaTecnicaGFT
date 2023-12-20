@@ -6,6 +6,6 @@ import java.time.OffsetDateTime;
 
 public interface GetPriceUseCase {
 
-  PriceDto getPriceByDateAndProductIdAndBrandId(OffsetDateTime date, Long productId, Long brandId)
+  PriceDto getPriceByDateAndPriceIdAndBrandId(OffsetDateTime date, Long productId, Long brandId)
       throws PriceNotFoundException;
 }

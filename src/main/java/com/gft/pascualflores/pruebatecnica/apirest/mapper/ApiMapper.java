@@ -7,5 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface ApiMapper {
 
-  ResponsePriceDto productDtoToResponsePriceDto(PriceDto productDto);
+  ResponsePriceDto priceDtoToResponsePriceDto(PriceDto productDto);
 }

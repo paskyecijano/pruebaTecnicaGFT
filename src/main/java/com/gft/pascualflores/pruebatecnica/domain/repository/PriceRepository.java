@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface PriceRepository {
 
-  Optional<PriceDto> getPriceByDateAndProductIdAndBrandId(
+  Optional<PriceDto> getPriceByDateAndPriceIdAndBrandId(
       OffsetDateTime date, Long productId, Long brandId);
 }
