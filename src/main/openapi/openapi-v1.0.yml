@@ -12,7 +12,7 @@ servers:
   - url: 'http://localhost:8080'
 tags:
   - name: price
-    description: Servicios para gestionar productos
+    description: Servicios para consultar precios
 paths:
   /api/v1/getPrice:
     get:
@@ -49,7 +49,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseProduct'
+                $ref: '#/components/schemas/ResponsePrice'
         '400':
           $ref: '#/components/schemas/BadRequest'
         '404':
@@ -71,7 +71,7 @@ components:
           type: string
         code:
           type: string
-    ResponseProduct:
+    ResponsePrice:
       type: object
       properties:
         productId:
