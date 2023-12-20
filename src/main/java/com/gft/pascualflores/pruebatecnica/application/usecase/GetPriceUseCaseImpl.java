@@ -21,7 +21,7 @@ public class GetPriceUseCaseImpl implements GetPriceUseCase {
     Optional<PriceDto> productDto =
         priceRepository.getPriceByDateAndPriceIdAndBrandId(date, productId, brandId);
     if (productDto.isEmpty()) {
-      throw new PriceNotFoundException("Product or price not found");
+      throw new PriceNotFoundException();
     } else {
       return productDto.get();
     }
