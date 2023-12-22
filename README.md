@@ -40,9 +40,8 @@ Es posible que vea algo como esto:
 | 1        | 2020-06-15-00.00.00 | 2020-06-15-11.00.00 | 3          | 35455      | 1        | 30.50 | EUR  |
 | 1        | 2020-06-15-16.00.00 | 2020-12-31-23.59.59 | 4          | 35455      | 1        | 38.95 | EUR  |
 
-Los datos de prueba se almacenan en un archivo llamado esquema.sql, que se ejecuta durante el inicio del proyecto,
-automatizando el llenado.
-de la base de datos.
+Los datos de prueba se almacenan en un archivo llamado squema.sql, que se ejecuta durante el inicio del proyecto,
+automatizando el llenado de la base de datos.
 
 ## Probar la aplicación
 
@@ -58,8 +57,7 @@ Se ha optado por implementar una arquitectura hexagonal en el proyecto, adhirié
 a comprender la estructura del paquete, explicaré brevemente el contenido de cada capa.
 
 Dentro de la capa de dominio, encontrará interfaces de repositorio y casos de uso, que posteriormente se implementan en
-el
-capa de aplicación. La capa de infraestructura gestiona las interacciones con la base de datos. La capa apirest
+la capa de aplicación. La capa de infraestructura gestiona las interacciones con la base de datos. La capa apirest
 abarca los puntos finales del sistema dentro de su Controlador.
 
 Empleo el patrón Singleton para la inyección de dependencias basada en constructores y el patrón Builder para la
