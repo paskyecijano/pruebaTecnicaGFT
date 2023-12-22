@@ -13,13 +13,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@NamedEntityGraph(
-    name = "get-price-entity-graph",
-    attributeNodes = {
-      @NamedAttributeNode("priceList"),
-      @NamedAttributeNode("brand"),
-      @NamedAttributeNode("product"),
-    })
 public class Price {
 
   @Id
