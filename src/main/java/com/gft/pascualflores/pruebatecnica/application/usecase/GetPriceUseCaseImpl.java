@@ -1,6 +1,6 @@
 package com.gft.pascualflores.pruebatecnica.application.usecase;
 
-import com.gft.pascualflores.pruebatecnica.domain.exception.PriceNotFoundException;
+import com.gft.pascualflores.pruebatecnica.apirest.exception.PriceNotFoundException;
 import com.gft.pascualflores.pruebatecnica.domain.model.PriceDto;
 import com.gft.pascualflores.pruebatecnica.domain.repository.PriceRepository;
 import com.gft.pascualflores.pruebatecnica.domain.usecase.GetPriceUseCase;

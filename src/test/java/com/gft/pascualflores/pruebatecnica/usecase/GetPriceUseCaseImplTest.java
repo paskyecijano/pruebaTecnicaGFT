@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+import com.gft.pascualflores.pruebatecnica.apirest.exception.PriceNotFoundException;
 import com.gft.pascualflores.pruebatecnica.application.usecase.GetPriceUseCaseImpl;
-import com.gft.pascualflores.pruebatecnica.domain.exception.PriceNotFoundException;
 import com.gft.pascualflores.pruebatecnica.domain.model.PriceDto;
 import com.gft.pascualflores.pruebatecnica.domain.repository.PriceRepository;
 import java.time.OffsetDateTime;

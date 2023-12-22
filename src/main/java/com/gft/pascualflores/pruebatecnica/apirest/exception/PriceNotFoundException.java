@@ -1,4 +1,4 @@
-package com.gft.pascualflores.pruebatecnica.domain.exception;
+package com.gft.pascualflores.pruebatecnica.apirest.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

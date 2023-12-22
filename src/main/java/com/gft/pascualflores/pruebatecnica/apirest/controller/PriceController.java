@@ -1,8 +1,8 @@
 package com.gft.pascualflores.pruebatecnica.apirest.controller;
 
 import com.gft.pascualflores.pruebatecnica.apirest.data.ResponsePriceDto;
+import com.gft.pascualflores.pruebatecnica.apirest.exception.PriceNotFoundException;
 import com.gft.pascualflores.pruebatecnica.apirest.mapper.ApiMapper;
-import com.gft.pascualflores.pruebatecnica.domain.exception.PriceNotFoundException;
 import com.gft.pascualflores.pruebatecnica.domain.model.PriceDto;
 import com.gft.pascualflores.pruebatecnica.domain.usecase.GetPriceUseCase;
 import java.time.OffsetDateTime;

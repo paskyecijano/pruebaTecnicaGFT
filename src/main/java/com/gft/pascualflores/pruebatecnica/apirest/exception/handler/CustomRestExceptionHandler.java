@@ -1,7 +1,7 @@
-package com.gft.pascualflores.pruebatecnica.domain.exception.handler;
+package com.gft.pascualflores.pruebatecnica.apirest.exception.handler;
 
 import com.gft.pascualflores.pruebatecnica.apirest.data.ErrorResponseDto;
-import com.gft.pascualflores.pruebatecnica.domain.exception.PriceNotFoundException;
+import com.gft.pascualflores.pruebatecnica.apirest.exception.PriceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
