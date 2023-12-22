@@ -12,24 +12,22 @@ import com.gft.pascualflores.pruebatecnica.domain.usecase.GetPriceUseCase;
 import java.time.OffsetDateTime;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {PriceController.class})
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 class PriceControllerTest {
 
   public static final long PRODUCT_ID = 35455L;
   public static final long BRAND_ID = 1L;
 
-  @MockBean private ApiMapper apiMapper;
+  @Mock private ApiMapper apiMapper;
 
-  @MockBean private GetPriceUseCase getPriceUseCase;
+  @Mock private GetPriceUseCase getPriceUseCase;
 
-  @Autowired private PriceController priceController;
+  @InjectMocks private PriceController priceController;
 
   @Test
   void given_date_priceId_and_brandId_when_call_endpoint_then_return_price()

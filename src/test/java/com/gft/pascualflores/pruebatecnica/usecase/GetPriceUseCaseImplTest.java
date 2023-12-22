@@ -12,40 +12,43 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@ContextConfiguration(classes = {GetPriceUseCaseImpl.class})
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 class GetPriceUseCaseImplTest {
-  @Autowired private GetPriceUseCaseImpl getPriceUseCaseImpl;
 
-  @MockBean private PriceRepository priceRepository;
+  public static final long PRODUCT_ID = 35455L;
+  public static final long BRAND_ID = 1L;
+
+  @InjectMocks private GetPriceUseCaseImpl getPriceUseCaseImpl;
+
+  @Mock private PriceRepository priceRepository;
 
   @Test
   void given_mocked_data_when_call_getPriceByDateAndPriceIdAndBrandId_then_return_price()
       throws PriceNotFoundException {
     PriceDto priceDto = new PriceDto();
-    when(priceRepository.getPriceByDateAndPriceIdAndBrandId(
-            (OffsetDateTime) any(), (Long) any(), (Long) any()))
+    OffsetDateTime myDate = OffsetDateTime.now();
+
+    when(priceRepository.getPriceByDateAndPriceIdAndBrandId(myDate, PRODUCT_ID, BRAND_ID))
         .thenReturn(Optional.of(priceDto));
-    assertSame(priceDto, getPriceUseCaseImpl.getPriceByDateAndPriceIdAndBrandId(null, 1L, 1L));
-    verify(priceRepository)
-        .getPriceByDateAndPriceIdAndBrandId((OffsetDateTime) any(), (Long) any(), (Long) any());
+    assertSame(
+        priceDto,
+        getPriceUseCaseImpl.getPriceByDateAndPriceIdAndBrandId(myDate, PRODUCT_ID, BRAND_ID));
+    verify(priceRepository).getPriceByDateAndPriceIdAndBrandId(myDate, PRODUCT_ID, BRAND_ID);
   }
 
   @Test
   void given_wrong_data_when_call_getPriceByDateAndPriceIdAndBrandId_then_throws_exception()
       throws PriceNotFoundException {
-    when(priceRepository.getPriceByDateAndPriceIdAndBrandId(
-            (OffsetDateTime) any(), (Long) any(), (Long) any()))
+    OffsetDateTime myDate = OffsetDateTime.now();
+    when(priceRepository.getPriceByDateAndPriceIdAndBrandId(myDate, PRODUCT_ID, BRAND_ID))
         .thenReturn(Optional.empty());
     assertThrows(
         PriceNotFoundException.class,
-        () -> getPriceUseCaseImpl.getPriceByDateAndPriceIdAndBrandId(null, 1L, 1L));
-    verify(priceRepository)
-        .getPriceByDateAndPriceIdAndBrandId((OffsetDateTime) any(), (Long) any(), (Long) any());
+        () -> getPriceUseCaseImpl.getPriceByDateAndPriceIdAndBrandId(myDate, PRODUCT_ID, BRAND_ID));
+    verify(priceRepository).getPriceByDateAndPriceIdAndBrandId(myDate, PRODUCT_ID, BRAND_ID);
   }
 }

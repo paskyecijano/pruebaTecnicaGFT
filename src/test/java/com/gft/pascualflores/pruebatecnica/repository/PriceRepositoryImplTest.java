@@ -3,33 +3,37 @@ package com.gft.pascualflores.pruebatecnica.repository;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-
+import com.gft.pascualflores.pruebatecnica.infrastructure.entity.Price;
 import com.gft.pascualflores.pruebatecnica.infrastructure.mapper.PriceMapper;
 import com.gft.pascualflores.pruebatecnica.infrastructure.repository.InH2PriceRepository;
 import com.gft.pascualflores.pruebatecnica.infrastructure.repository.PriceRepositoryImpl;
+import java.time.OffsetDateTime;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@ContextConfiguration(classes = {PriceRepositoryImpl.class})
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 class PriceRepositoryImplTest {
-  @MockBean private InH2PriceRepository inH2PriceRepository;
 
-  @Autowired private PriceRepositoryImpl priceRepositoryImpl;
+  public static final long PRODUCT_ID = 35455L;
+  public static final long BRAND_ID = 1L;
+  @Mock private InH2PriceRepository inH2PriceRepository;
 
-  @MockBean private PriceMapper priceMapper;
+  @Mock private PriceMapper priceMapper;
+
+  @InjectMocks private PriceRepositoryImpl priceRepositoryImpl;
 
   @Test
   void given_mocked_data_when_call_getPriceByDateAndPriceIdAndBrandId_then_return_value() {
-    when(inH2PriceRepository.getPrice((OffsetDateTime) any(), (Long) any(), (Long) any()))
-        .thenReturn(new ArrayList<>());
-    assertFalse(priceRepositoryImpl.getPriceByDateAndPriceIdAndBrandId(null, 1L, 1L).isPresent());
-    verify(inH2PriceRepository).getPrice((OffsetDateTime) any(), (Long) any(), (Long) any());
+    OffsetDateTime myDate = OffsetDateTime.now();
+
+    when(inH2PriceRepository.getPrice(myDate, PRODUCT_ID, BRAND_ID)).thenReturn(new Price());
+    assertFalse(
+        priceRepositoryImpl
+            .getPriceByDateAndPriceIdAndBrandId(myDate, PRODUCT_ID, BRAND_ID)
+            .isPresent());
+    verify(inH2PriceRepository).getPrice(myDate, PRODUCT_ID, BRAND_ID);
   }
 }
