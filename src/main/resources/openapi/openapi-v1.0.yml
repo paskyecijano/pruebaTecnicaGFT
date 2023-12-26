@@ -14,13 +14,13 @@ tags:
   - name: price
     description: Servicios para consultar precios
 paths:
-  /api/v1/getPrice:
+  /api/v1/price:
     get:
       tags:
         - price
       summary: Precio a aplicar a un producto
       description: Devuelve el precio a aplicar a un producto a partir de filtros de fecha, id y marca
-      operationId: getPrice
+      operationId: price
       parameters:
         - name: date
           in: query
@@ -40,6 +40,7 @@ paths:
         - name: brandId
           in: query
           description: 'Id de la marca'
+          required: true
           schema:
             type: integer
             format: int64
