@@ -24,7 +24,7 @@ class PriceControllerIntegrationTest {
   public static final Double EXPECTED_PRICE4 = 30.5;
   public static final Double EXPECTED_PRICE5 = 38.95;
 
-  private static final String PATH = "/api/v1/getPrice";
+  private static final String PATH = "/api/v1/price";
   private static final String PRODUCT_ID = "35455";
   private static final String BRAND_ID = "1";
   private static final String wrongDate = "2021-06-20T16:00:00Z";
@@ -67,13 +67,23 @@ class PriceControllerIntegrationTest {
   }
 
   @Test
-  void given_wrong_test_data_when_call_priceController_then_return_bad_request() throws Exception {
+  void given_wrong_test_data_when_call_priceController_then_return_not_found() throws Exception {
     mockMvc
         .perform(
             MockMvcRequestBuilders.get(PATH)
                 .param("date", wrongDate)
                 .param("productId", PRODUCT_ID)
                 .param("brandId", BRAND_ID))
+        .andExpect(MockMvcResultMatchers.status().isNotFound());
+  }
+
+  @Test
+  void given_wrong_test_data_when_call_priceController_then_return_bad_request() throws Exception {
+    mockMvc
+        .perform(
+            MockMvcRequestBuilders.get(PATH)
+                .param("date", "2020-06-16T21:00:00Z")
+                .param("productId", PRODUCT_ID))
         .andExpect(MockMvcResultMatchers.status().isBadRequest());
   }
 

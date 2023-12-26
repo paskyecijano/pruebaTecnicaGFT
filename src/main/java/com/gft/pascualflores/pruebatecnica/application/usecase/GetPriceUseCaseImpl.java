@@ -17,7 +17,7 @@ public class GetPriceUseCaseImpl implements GetPriceUseCase {
 
   @Override
   public PriceDto getPriceByDateAndPriceIdAndBrandId(
-      OffsetDateTime date, Long productId, Long brandId) throws PriceNotFoundException {
+      OffsetDateTime date, Long productId, Long brandId) {
     Optional<PriceDto> productDto =
         priceRepository.getPriceByDateAndPriceIdAndBrandId(date, productId, brandId);
     if (productDto.isEmpty()) {

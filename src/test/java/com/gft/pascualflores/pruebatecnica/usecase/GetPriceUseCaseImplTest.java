@@ -27,8 +27,7 @@ class GetPriceUseCaseImplTest {
   @Mock private PriceRepository priceRepository;
 
   @Test
-  void given_mocked_data_when_call_getPriceByDateAndPriceIdAndBrandId_then_return_price()
-      throws PriceNotFoundException {
+  void given_mocked_data_when_call_getPriceByDateAndPriceIdAndBrandId_then_return_price() {
     PriceDto priceDto = new PriceDto();
     OffsetDateTime myDate = OffsetDateTime.now();
 
@@ -41,8 +40,7 @@ class GetPriceUseCaseImplTest {
   }
 
   @Test
-  void given_wrong_data_when_call_getPriceByDateAndPriceIdAndBrandId_then_throws_exception()
-      throws PriceNotFoundException {
+  void given_wrong_data_when_call_getPriceByDateAndPriceIdAndBrandId_then_throws_exception() {
     OffsetDateTime myDate = OffsetDateTime.now();
     when(priceRepository.getPriceByDateAndPriceIdAndBrandId(myDate, PRODUCT_ID, BRAND_ID))
         .thenReturn(Optional.empty());

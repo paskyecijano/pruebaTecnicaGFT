@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gft.pascualflores.pruebatecnica.apirest.data.ErrorResponseDto;
+import com.gft.pascualflores.pruebatecnica.apirest.exception.MandatoryParamsException;
 import com.gft.pascualflores.pruebatecnica.apirest.exception.PriceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,8 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
 class CustomRestExceptionHandlerTest {
-  @InjectMocks
-  private CustomRestExceptionHandler customRestExceptionHandler;
+  @InjectMocks private CustomRestExceptionHandler customRestExceptionHandler;
 
   @Test
   void testHandleAll() {
@@ -34,12 +34,26 @@ class CustomRestExceptionHandlerTest {
     ResponseEntity<Object> actualHandleNotFoundExceptionResult =
         customRestExceptionHandler.handleNotFoundException(new PriceNotFoundException());
     assertEquals(
-        "400", ((ErrorResponseDto) actualHandleNotFoundExceptionResult.getBody()).getCode());
+        "404", ((ErrorResponseDto) actualHandleNotFoundExceptionResult.getBody()).getCode());
     assertEquals(
         "Product or price not found",
         ((ErrorResponseDto) actualHandleNotFoundExceptionResult.getBody()).getMessage());
-    assertEquals(400, actualHandleNotFoundExceptionResult.getStatusCodeValue());
+    assertEquals(404, actualHandleNotFoundExceptionResult.getStatusCodeValue());
     assertTrue(actualHandleNotFoundExceptionResult.hasBody());
     assertTrue(actualHandleNotFoundExceptionResult.getHeaders().isEmpty());
+  }
+
+  @Test
+  void testHandleMandatoryParamsException() {
+    ResponseEntity<Object> actualHandleMandatoryParamsExceptionResult =
+        customRestExceptionHandler.handleMandatoryParamsException(new MandatoryParamsException());
+    assertEquals(
+        "400", ((ErrorResponseDto) actualHandleMandatoryParamsExceptionResult.getBody()).getCode());
+    assertEquals(
+        "Required params is not present",
+        ((ErrorResponseDto) actualHandleMandatoryParamsExceptionResult.getBody()).getMessage());
+    assertEquals(400, actualHandleMandatoryParamsExceptionResult.getStatusCodeValue());
+    assertTrue(actualHandleMandatoryParamsExceptionResult.hasBody());
+    assertTrue(actualHandleMandatoryParamsExceptionResult.getHeaders().isEmpty());
   }
 }
