@@ -16,15 +16,16 @@ import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjuster;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {ApiMapperImpl.class})
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 class ApiMapperImplTest {
-  @Autowired private ApiMapperImpl apiMapperImpl;
+  @InjectMocks private ApiMapperImpl apiMapperImpl;
 
   @Test
   void testPriceDtoToResponsePriceDto() {

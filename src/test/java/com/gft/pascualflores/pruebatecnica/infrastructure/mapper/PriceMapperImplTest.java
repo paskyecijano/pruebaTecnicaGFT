@@ -15,14 +15,13 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@ContextConfiguration(classes = {PriceMapperImpl.class})
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 class PriceMapperImplTest {
-  @Autowired private PriceMapperImpl priceMapperImpl;
+  @InjectMocks
+  private PriceMapperImpl priceMapperImpl;
 
   @Test
   void testPriceToPriceDto() {
