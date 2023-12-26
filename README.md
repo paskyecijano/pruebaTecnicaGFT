@@ -47,7 +47,7 @@ automating the filling of the database.
 To test the application, we need to make a GET request with the following URL:
 
 ```
-http://localhost:8080/api/v1/getPrice?date=2020-06-20T16:00:00Z&productId=35455&brandId=1
+http://localhost:8080/api/v1/price?date=2020-06-20T16:00:00Z&productId=35455&brandId=1
 ```
 
 ## Architecture
