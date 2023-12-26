@@ -25,7 +25,6 @@ paths:
         - name: date
           in: query
           description: 'Fecha de aplicación'
-          required: true
           schema:
             type: string
             format: date-time
@@ -33,14 +32,12 @@ paths:
         - name: productId
           in: query
           description: 'Id del producto'
-          required: true
           schema:
             type: integer
             format: int64
         - name: brandId
           in: query
           description: 'Id de la marca'
-          required: true
           schema:
             type: integer
             format: int64
