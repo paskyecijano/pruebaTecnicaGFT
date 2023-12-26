@@ -2,36 +2,35 @@
 
 ## Getting Started
 
-Estas instrucciones le proporcionarán una copia del proyecto en funcionamiento en su máquina local para su desarrollo y
-prueba.
-propósitos.
+These instructions will provide you with a copy of the project running on your local machine for development and
+proof.
 
-### Prerrequisitos
+### Prerequisites
 
-* Docker and Docker-Compose instalados en local
+* Docker and Docker-Compose installed locally
 
-### Instalación
+### Installing
 
-Clone el proyecto del repositorio de GitHub
+Clone the project from the GitHub repository
 
 ```
 git clone https://github.com/paskyecijano/pruebaTecnicaGFT.git
 ```
 
-Ejecuta el siguiente comando
+Run the following command
 
 ```
 docker-compose up --build -d
 ```
 
-Con esto ya tendremos el código del proyecto en un contenedor de docker en funcionamiento.
+With this we will have the project code in a working Docker container.
 
-En este paso, se ha ejecutado el comando "clean install", que ejecuta todas los test del proyecto.
-Es posible que vea algo como esto:
+In this step, the "clean install" command has been executed, which executes all the tests of the project.
+You may see something like this:
 
 ![test.png](test.png)
 
-## Base de datos (h2)
+## Database (h2)
 
 | BRAND_ID | START_DATE          | END_DATE            | PRICE_LIST | PRODUCT_ID | PRIORITY | PRICE | CURR |
 |----------|---------------------|---------------------|------------|------------|----------|-------|------|
@@ -40,36 +39,35 @@ Es posible que vea algo como esto:
 | 1        | 2020-06-15-00.00.00 | 2020-06-15-11.00.00 | 3          | 35455      | 1        | 30.50 | EUR  |
 | 1        | 2020-06-15-16.00.00 | 2020-12-31-23.59.59 | 4          | 35455      | 1        | 38.95 | EUR  |
 
-Los datos de prueba se almacenan en un archivo llamado squema.sql, que se ejecuta durante el inicio del proyecto,
-automatizando el llenado de la base de datos.
+The test data is stored in a file called schema.sql, which is executed during project startup,
+automating the filling of the database.
 
-## Probar la aplicación
+## Test the app
 
-Para probar la aplicación, necesitamos hacer una petición GET con la siguiente URL:
+To test the application, we need to make a GET request with the following URL:
 
 ```
 http://localhost:8080/api/v1/getPrice?date=2020-06-20T16:00:00Z&productId=35455&brandId=1
 ```
 
-## Arquitectura
+## Architecture
 
-Se ha optado por implementar una arquitectura hexagonal en el proyecto, adhiriéndose a los principios SOLID. para ayudar
-a comprender la estructura del paquete, explicaré brevemente el contenido de cada capa.
+It has been decided to implement a hexagonal architecture in the project, adhering to the SOLID principles. to help
+To understand the structure of the package, I will briefly explain the content of each layer.
 
-Dentro de la capa de dominio, encontrará interfaces de repositorio y casos de uso, que posteriormente se implementan en
-la capa de aplicación. La capa de infraestructura gestiona las interacciones con la base de datos. La capa apirest
-abarca los puntos finales del sistema dentro de su Controlador.
+Within the domain layer, you will find repository interfaces and use cases, which are later implemented in
+the application layer. The infrastructure layer manages interactions with the database. The apirest layer
+It encompasses the system endpoints within your Controller.
 
-Empleo el patrón Singleton para la inyección de dependencias basada en constructores y el patrón Builder para la
-creación de objetos.
+I use the Singleton pattern for constructor-based dependency injection and the Builder pattern for
+creation of objects.
 
-Para definir la API, he empleado Open API 3.0, siguiendo el enfoque API First, que implica la utilización de un
-Archivo OpenAPI YAML que contiene la especificación API.
+To define the API, I have used Open API 3.0, following the API First approach, which involves the use of a
+OpenAPI YAML file containing the API specification.
 
-El manejo de excepciones se logra a través de ControllerAdvice.
+Exception handling is achieved through ControllerAdvice.
 
-La base de datos en sí está en memoria (H2), y Hibernate se encarga de la creación automática de relaciones entre
-tablas.
+The database itself is in memory (H2), and Hibernate takes care of the automatic creation of relationships between
+boards.
 
-Además, aprovecho Lombok para optimizar el código y Mapstruct para un mapeo de datos eficiente en todas las capas.
-
+Additionally, I leverage Lombok to optimize the code and Mapstruct for efficient data mapping across all layers.
